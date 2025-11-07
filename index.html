@@ -273,13 +273,13 @@
         </h4>
         <div style="text-align: center; margin-top: 2rem;">
           <img id="teaser" width="85%" src="images/main_fig.png">
-          <p style="margin-top: 1rem;">Example of our multi-modal semantic perturbation pipeline applied to RealWorldQA benchmark. Using ControlNet trained with Flux models, a new speed limit sign is generated, changing the correct answer from (B) to (C) while preserving the original image's overall composition. A contaminated model that has memorized the original question is likely to fail on the perturbed version.detection.</p>
+          <p style="margin-top: 1rem;">Example of our multi-modal semantic perturbation pipeline applied to RealWorldQA benchmark. Using ControlNet trained with Flux models, a new speed limit sign is generated, changing the correct answer from (B) to (C) while preserving the original image's overall composition. A contaminated model that has memorized the original question is likely to fail on the perturbed version.</p>
         </div>
         <br>
         <h4 class="subtitle has-text-left">
-          This perturbation pipeline generates image-question pairs with the original image composition intact but modified slightly that the answer is changed.
+          This perturbation pipeline generates image-question pairs with the original image composition intact but modified slightly so that the answer is changed.
           <br><br>
-          The perturbed benchmark will have a similar or lower difficulty than the original benchmark, meaning clean models that truly generalize should perform better. However, we discover that contaminated models consistently underperform, showing dramatic performance drops upto -45%.
+          The perturbed benchmark will have a similar or lower difficulty than the original benchmark, meaning clean models that truly generalize should perform better. However, we discover that contaminated models consistently underperform, showing dramatic performance drops up to -45%.
         </h4>
       </div>
     </div>
@@ -326,16 +326,13 @@
         </centering> 
         
         <div class="content has-text-justified"> 
-          <p>
-            <br><br>
-            First, we randomly sample a different answer choice from the original question, and feed the original image along with the question and the new answer to an LLM.
-            <br><br>
-            This generates a dense caption of that can be used to prompt ControlNet to generate a perturbed image with the new answer, while preserving the image's overall composition.
-            <br><br>
-            We manually verify the perturbed image-question pairs to ensure they are valid and the answer is changed. This process can be automated using a strong reasoning model like <em>o3</em>.
-            <br><br>
-            We verify that contaminated models consistently underperform on the perturbed benchmark with varying epochs, training strategies, and model architectures.
-          </p>
+          <ol>
+            <li>First, we randomly sample a different answer choice from the original question, and feed the original image along with the question and the new answer to an LLM.</li>
+            <li>This generates a dense caption that can be used to prompt ControlNet to generate a perturbed image with the new answer, while preserving the image's overall composition.</li>
+            <li>We manually verify the perturbed image-question pairs to ensure they are valid and the answer is changed. This process can be automated using a strong reasoning model like <em>o3</em>.</li>
+          </ol>
+          <br>
+          We verify that contaminated models consistently underperform on the perturbed benchmark with varying epochs, training strategies, and model architectures.
         </div> 
       </div>
   </section>
@@ -435,6 +432,8 @@
             Example where the perturbed variant is easier to solve than the original question. In the original image, the traffic sign is small and the text barely legible; after perturbation, the sign is enlarged and clearly visible.
             <br><br>
             When Flux ControlNet generates the perturbed image, it often highlights the salient visual cues more clearly than the original images.
+            <br><br>
+            We assume that by preserving the original question and only altering the answer choice, the question difficulty remains comparable. Combined with some examples like above, the perturbed dataset as a whole should have a similar or lower difficulty than the original dataset.
           </p>
         </div>  
       </div>
@@ -461,9 +460,9 @@
           <img id="teaser" width="95%" src="images/natbench.png">     
         </div>
 
-        We observe that clean models show similar performance on both varaints, while contaminated models show dramatic performance drops upto -45.58% (98.63% -> 53.05%). Note that this is a two-way multiple choice benchmark, meaning that a contaminated model with near perfect performance on the leaked data performs as bad as random guessing on the perturbed variant.
+        We observe that clean models show similar performance on both variants, while contaminated models show dramatic performance drops up to -45.58% (98.63% -> 53.05%). Note that this is a two-way multiple choice benchmark, meaning that a contaminated model with near perfect performance on the leaked data performs as bad as random guessing on the perturbed variant.
         <br><br>
-        This result suggests that any reliable semantic variation - natrual, procedural, or synthetic - fits our framework.
+        This result suggests that any reliable semantic variation - natural, procedural, or synthetic - fits our framework.
         <br><br>
 
         <h2 class="title is-5">Our pipeline is modular.</h2> For our main experiments, we use GPT-4o as the LLM and Flux ControlNet as the text-to-image model. However, we verify that our approach works even after replacing GPT-4o with Molmo-7B-D, and after replacing manual filtering with verification by a strong reasoning model like <em>o3</em>.
@@ -472,6 +471,8 @@
         <br><br>
       </div>
     </div>
+    <br>
+    For a full list of results on our ablation experiments, please refer to the appendix of our paper.
   </div>
 </section>
   <section class="section" id="BibTeX">
