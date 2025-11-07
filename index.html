@@ -3,10 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description" content="Scrutinizing LMMs over Dense Temporal Reasoning with Short Videos">
-  <meta name="keywords" content="scrutinize, LMM, temporal reasoning, short video">
+  <meta name="description" content="Contamination Detection for VLMs using Multi‑Modal Semantic Perturbations">
+  <meta name="keywords" content="contamination detection, VLM, multi-modal semantic perturbation">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Vinoground</title>
+  <title>mm-semantic-perturbation</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
@@ -142,6 +142,27 @@
     right: -0.1em; /* Adjusts the position slightly to the right */
     font-size: smaller; /* Makes the font size smaller if needed */
 }
+
+/* Color code superscript numbers */
+.author-block a sup.sup-1,
+.author-block sup.sup-1 {
+    color: #e74c3c; /* Red for 1 */
+}
+
+.author-block a sup.sup-2,
+.author-block sup.sup-2 {
+    color: #3498db; /* Blue for 2 */
+}
+
+.author-block a sup.sup-3,
+.author-block sup.sup-3 {
+    color: #2ecc71; /* Green for 3 */
+}
+
+/* Spacing for affiliation superscripts */
+.author-block sup {
+    margin-right: 0.2em;
+}
   
     .no-sort {
         cursor: default;
@@ -155,41 +176,48 @@
 
 <body>
 
-
   <section class="hero">
     <div class="hero-body">
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Vinoground<span class="is-size-2"><span class="is-size-1"></span></h1>
-            <h3 class="title is-2 publication-title">Scrutinizing LMMs over Dense Temporal Reasoning with Short Videos</h3>
-            <h5 class="subtitle is-4 publication-awards">arXiv 2024</h5>
+            <h3 class="title is-3 publication-title">Contamination Detection for VLMs using Multi‑Modal Semantic Perturbations
+            </h3>
+            <h5 class="subtitle is-4 publication-awards">arXiv 2025</h5>
             <div class="is-size-4 publication-authors">
 
               <span class="author-block">
-                <a href="https://pages.cs.wisc.edu/~harrisz">Jianrui Zhang<sup>*</sup></a>,
+                <a href="https://jadenpark0.github.io/">Jaden Park<sup class="sup-1">1</sup></a>,
               </span>
 
 
               <span class="author-block">
-                <a href="https://pages.cs.wisc.edu/~mucai/">Mu Cai<sup>*</sup></a>,
+                <a href="https://pages.cs.wisc.edu/~mucai/">Mu Cai<sup class="sup-1">1</sup></a>,
               </span>
-            
-            
+
               <span class="author-block">
-                <a href="https://pages.cs.wisc.edu/~yongjaelee/" style="color:#008AD7;font-weight:normal;">Yong Jae
-                  Lee</a>
+                <a href="https://yaof20.github.io/">Feng Yao<sup class="sup-2">2</sup></a>,
+              </span>
+
+              <span class="author-block">
+                <a href="https://shangjingbo1226.github.io/">Jingbo Shang<sup class="sup-2">2</sup></a>,
+              </span>
+
+              <span class="author-block">
+                <a href="https://sites.google.com/view/soochahnlee/home">Soochahn Lee<sup class="sup-3">3</sup></a>,
+              </span>
+              
+              <span class="author-block">
+                <a href="https://pages.cs.wisc.edu/~yongjaelee/" style="color:#008AD7;font-weight:normal;">Yong Jae Lee<sup class="sup-1">1</sup></a>
               </span>
             </div>
 
 
-            <div class="is-size-4 publication-authors">
-              <span class="author-block">University of Wisconsin-Madison</span>
+            <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup class="sup-1">1</sup> University of Wisconsin-Madison</span>
+              <span class="author-block"><sup class="sup-2">2</sup> University of California, San Diego</span>
+              <span class="author-block"><sup class="sup-3">3</sup> Kookmin University</span>
             </div>
-            <div class="is-size-5 publication-authors">
-              <span class="author-block"><sup>*</sup>Equal Contribution</span>
-            </div>
-
 
             <div class="column has-text-centered">
               <div class="publication-links">
@@ -202,7 +230,7 @@
                     <span>arXiv</span>
                   </a>
                 </span>
-                <span class="link-block">
+                <!-- <span class="link-block">
                   <a href="https://github.com/Vinoground/Vinoground" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
@@ -228,7 +256,7 @@
                     </span>
                     <span>Leaderboard</span>
                   </a>
-                </span>
+                </span> -->
               </div>
             </div>
           </div>
@@ -241,17 +269,17 @@
     <div class="container is-max-desktop">
       <div class="hero-body">
         <h4 class="subtitle has-text-left">
-          🔥 Vinoground has been integrated into <a href="https://github.com/EvolvingLMMs-Lab/lmms-eval">lmms-eval</a> and will be announced in the next public release. One can begin using it by cloning their repository. Evaluation is now made easier.
+          We introduce <b>Multi-modal Semantic Perturbation</b>, a pipeline to create perturbed benchmarks that can be used to detect data contamination in VLMs.
+        </h4>
+        <div style="text-align: center; margin-top: 2rem;">
+          <img id="teaser" width="85%" src="images/main_fig.png">
+          <p style="margin-top: 1rem;">Example of our multi-modal semantic perturbation pipeline applied to RealWorldQA benchmark. Using ControlNet trained with Flux models, a new speed limit sign is generated, changing the correct answer from (B) to (C) while preserving the original image's overall composition. A contaminated model that has memorized the original question is likely to fail on the perturbed version.detection.</p>
+        </div>
+        <br>
+        <h4 class="subtitle has-text-left">
+          This perturbation pipeline generates image-question pairs with the original image composition intact but modified slightly that the answer is changed.
           <br><br>
-          We introduce <b>Vinoground</b>, a temporal counterfactual LMM evaluation benchmark encompassing 1000 short and natural video-caption pairs.
-          <br><br>
-          We are the first dataset to use truly natural negative videos within each counterfactual pair instead of synthetic or unnatural alternatives, making our benchmark even more difficult.
-          <br><br>
-          🔥<span style="color: #ff3860">[NEW!]</span> Even the best model, o3, performs at only 56% on group score, significantly worse than the human baseline of ~90%.
-          <br><br>
-          We discover that LMMs are much better at analyzing coarse-level information than discovering fine-grained details.
-          <br><br>
-          Short video comprehension is still a problem not yet fully resolved, especially with dense temporal reasoning.
+          The perturbed benchmark will have a similar or lower difficulty than the original benchmark, meaning clean models that truly generalize should perform better. However, we discover that contaminated models consistently underperform, showing dramatic performance drops upto -45%.
         </h4>
       </div>
     </div>
@@ -265,8 +293,7 @@
           <h2 class="title is-3">Abstract</h2>
           <div class="content has-text-justified">
             <p>
-              There has been growing sentiment recently that modern large multimodal models (LMMs) have addressed most of the key challenges related to short video comprehension. As a result, both academia and industry are gradually shifting their attention towards the more complex challenges posed by understanding long-form videos. 
-              However, is this really the case?  Our studies indicate that LMMs still lack many fundamental reasoning capabilities even when dealing with short videos.  We introduce Vinoground, a temporal counterfactual LMM evaluation benchmark encompassing 1000 short and natural video-caption pairs. We demonstrate that existing LMMs severely struggle to distinguish temporal differences between different actions and object transformations.  For example, the best model GPT-4o only obtains ~50% on our text and video scores, showing a large gap compared to the human baseline of ~90%. All open-source multimodal models and CLIP-based models perform much worse, producing mostly random chance performance. Through this work, we shed light onto the fact that temporal reasoning in short videos is a problem yet to be fully solved.  
+              Recent advances in Vision–Language Models (VLMs) have achieved state-of-the-art performance on numerous benchmark tasks. However, the use of internet-scale, often proprietary, pretraining corpora raises a critical concern for both practitioners and users: inflated performance due to <strong><em>test-set leakage</em></strong>. While prior work has proposed mitigation strategies such as decontamination of pretraining data and benchmark redesign for LLMs, the complementary direction of developing detection methods for <strong><em>contaminated VLMs</em></strong> remains underexplored. To address this gap, we deliberately contaminate open-source VLMs on popular benchmarks and show that existing detection approaches either fail outright or exhibit inconsistent behavior. We then propose a novel simple yet effective detection method based on <strong><em>multi-modal semantic perturbation</em></strong>, demonstrating that contaminated models fail to generalize under controlled perturbations. Finally, we validate our approach across multiple contamination strategies, confirming its robustness and effectiveness.  
             </p>
   
           </div>
@@ -275,426 +302,6 @@
         
     </div>
   </section>
-  <section class="section">
-    <div class="container">
-      
-      <div class="columns is-centered">
-        <div class="column is-full has-text-centered content">
-
-          <h2 class="title is-3" id="leaderboard">Leaderboard</h2>
-          
-      <table class="js-sort-table" id="results" style="margin-left: auto; margin-right: auto;">
-      <thead>
-        <tr>
-          <th class="no-sort" style="vertical-align: middle; width: 200px;" data-js-sort-colNum="none"><strong>Model</strong></th>
-          <th class="no-sort" style="vertical-align: middle; width: 100px;" data-js-sort-colNum="none"><strong>Frames</strong></th>
-          <th style="vertical-align: middle; width: 150px; background-color: #f7f7f7;"  data-js-sort-colNum="2"><strong>Text Score (%)</strong></th>
-          <th style="vertical-align: middle; width: 150px; background-color: #e3f2fd;"  data-js-sort-colNum="3"><strong>Video Score (%)</strong></th>
-          <th style="vertical-align: middle; width: 150px; background-color: #d9ead3;"  data-js-sort-colNum="4"><strong>Group Score (%)</strong></th>
-        </tr>
-      </thead>
-      <tbody>
-      
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><b class="">Human Performance
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </b></td>
-          <td style="vertical-align: middle;">All</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>93.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>94.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>90.0</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><b class="">Human Performance
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>91.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>90.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>85.2</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><b class="">Random Chance
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </b></td>
-          <td style="vertical-align: middle;">—</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>25.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>25.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>16.7</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://openai.com/index/introducing-o3-and-o4-mini/"><b class="">o3
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>72.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>70.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>56.6</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://openai.com/index/gpt-4-1/"><b class="">GPT-4.1
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>69.1</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>48.6</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>38.5</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://openai.com/index/introducing-o3-and-o4-mini/"><b class="">o4-mini
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>58.2</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>40.9</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>28.5</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/"><b class="">Gemini-2.5-Pro
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">1fps</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>65.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>62.4</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>49.0</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://blog.google/technology/google-deepmind/gemini-model-thinking-updates-march-2025/"><b class="">Gemini-2.5-Flash
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">1fps</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>60.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>54.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>41.8</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://openai.com/o1/"><b class="">o1
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>59.1</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>50.5</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>36.0</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://internvl.github.io/blog/2025-04-11-InternVL-3.0/"><b class="">InternVL3-78B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>66.2</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>48.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>36.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://internvl.github.io/blog/2025-04-11-InternVL-3.0/"><b class="">InternVL3-8B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>48.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>28.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>14.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://qwenlm.github.io/blog/qwen2.5-vl/"><b class="">Qwen2.5-VL-72B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>59.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>41.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>29.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://qwenlm.github.io/blog/qwen2.5-vl/"><b class="">Qwen2.5-VL-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>47.6</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>34.4</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>19.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://internvl.github.io/blog/2024-12-05-InternVL-2.5/"><b class="">InternVL2.5-78B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>58.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>40.6</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>27.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://internvl.github.io/blog/2024-12-05-InternVL-2.5/"><b class="">InternVL2.5-8B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p>
-          </a></b></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>46.6</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>28.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>14.4</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://openai.com/index/hello-gpt-4o/"><b class="">GPT-4o
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>54.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>38.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>24.6</strong></td>
-        </tr>        
-        
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://blog.google/technology/google-deepmind/google-gemini-ai-update-december-2024/"><b class="">Gemini-2.0-Thinking
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>39.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>31.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>14.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://blog.google/technology/ai/google-gemini-next-generation-model-february-2024/"><b class="">Gemini-1.5-Pro
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">1fps</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>35.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>22.6</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>10.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://www.anthropic.com/news/claude-3-5-sonnet"><b class="">Claude 3.5 Sonnet
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">4</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>32.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>28.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>10.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://qwenlm.github.io/blog/qwen2-vl/"><b class="">Qwen2-VL-72B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>50.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>32.6</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>17.4</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://qwenlm.github.io/blog/qwen2-vl/"><b class="">Qwen2-VL-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">4fps</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>40.2</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>32.4</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>15.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://llava-vl.github.io/blog/2024-09-30-llava-video/"><b class="">LLaVA-Video-72B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">64</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>49.2</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>34.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>20.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://llava-vl.github.io/blog/2024-09-30-llava-video/"><b class="">LLaVA-Video-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">64</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>42.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>30.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>17.0</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://llava-vl.github.io/blog/2024-08-05-llava-onevision/"><b class="">LLaVA-OneVision-Qwen2-72B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>48.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>35.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>21.8</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://llava-vl.github.io/blog/2024-08-05-llava-onevision/"><b class="">LLaVA-OneVision-Qwen2-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">16</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>41.6</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>29.4</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>14.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/DAMO-NLP-SG/VideoLLaMA3"><b class="">VideoLLaMA3
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">16</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>47.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>30.4</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>15.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://apollo-lmms.github.io/"><b class="">Apollo-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">4</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>43.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>30.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>17.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/OpenGVLab/InternVideo"><b class="">InternVideo2.5-8B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>35.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>29.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>11.4</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/rhymes-ai/Aria"><b class="">Aria
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>34.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>28.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>12.0</strong></td>
-        </tr>
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/InternLM/InternLM-XComposer"><b class="">InternLM-XC-2.5
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32/1fps</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>28.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>27.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>09.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/DAMO-NLP-SG/VideoLLaMA2"><b class="">VideoLLaMA2-72B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">8</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>36.2</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>21.6</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>08.4</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/OpenBMB/MiniCPM-o"><b class="">MiniCPM-2.6
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">16</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>32.6</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>29.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>11.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://llava-vl.github.io/blog/2024-04-30-llava-next-video/"><b class="">LLaVA-NeXT-Video-34B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>23.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>21.2</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>03.8</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://llava-vl.github.io/blog/2024-04-30-llava-next-video/"><b class="">LLaVA-NeXT-Video-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">32</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>21.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>25.6</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>06.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/PKU-YuanGroup/Video-LLaVA"><b class="">Video-LLaVA-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">8</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>24.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>25.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>06.6</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://techcommunity.microsoft.com/blog/azure-ai-services-blog/discover-the-new-multi-lingual-high-quality-phi-3-5-slms/4225280"><b class="">Phi-3.5-Vision
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">16</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>24.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>22.4</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>06.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://boheumd.github.io/MA-LMM/"><b class="">MA-LMM-Vicuna-7B
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">4</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>23.8</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>25.6</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>06.8</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://matryoshka-mm.github.io/"><b class="">M3
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">6</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>21.2</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>25.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>06.8</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/huangb23/VTimeLLM"><b class="">VTimeLLM
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">100</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>19.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>27.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>05.2</strong></td>
-        </tr>
-
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://arxiv.org/abs/2109.14084"><b class="">VideoCLIP
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">60</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>17.0</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>02.8</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>01.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://github.com/PKU-YuanGroup/LanguageBind"><b class="">LanguageBind
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">8</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>10.6</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>05.0</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>01.2</strong></td>
-        </tr>
-
-        <tr>
-          <td style="text-align: left; padding: 2px 10px;"><a href="https://imagebind.metademolab.com/"><b class="">ImageBind
-            <p style="font-size: 12px; margin-left: 5px; color: #858383;"></p></b></a></td>
-          <td style="vertical-align: middle;">20</td>
-          <td style="vertical-align: middle; background-color: #f7f7f7;"><strong>09.4</strong></td>
-          <td style="vertical-align: middle; background-color: #e3f2fd;"><strong>03.4</strong></td>
-          <td style="vertical-align: middle; background-color: #d9ead3;"><strong>00.6</strong></td>
-        </tr>
-
-
-
-      </tbody>                                              
-  </table> 
-
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</section>
 
 
 
@@ -702,7 +309,7 @@
     <!-- Results. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-six-fifths">
-        <h2 class="title is-3"> Inspiration </h2>
+        <h2 class="title is-3"> Pipeline of Multi-modal Semantic Perturbation </h2>
       </div>
     </div>
     <!-- </div> -->
@@ -714,36 +321,20 @@
 
         <centering>
           <div style="text-align: center;">
-            <img id="teaser" src="images/gpt4o-failure.png">  
+            <img id="teaser" src="images/pipeline.png">  
           </div>
         </centering> 
         
         <div class="content has-text-justified"> 
           <p>
             <br><br>
-            GPT-4o, one of the state-of-the-art Large Multimodal Models (LMMs), is unable to answer a simple question with regards to the order two events happened. It not only did not mention any temporality in its response, its analyses for both videos are completely wrong.
-          </p>
-        </div> 
-        
-        <centering>
-          <div style="text-align: center;">
-            <img id="teaser" width="50%" src="images/wino.png"> 
-            <p>Above: an example instance from Winoground.</p>
-            <img id="teaser" src="images/vino.png"> 
-            <p>Above: an example instance from Vinoground.</p>       
-          </div>
-        </centering> 
-        
-        <div class="content has-text-justified"> 
-          <p>
+            First, we randomly sample a different answer choice from the original question, and feed the original image along with the question and the new answer to an LLM.
             <br><br>
-            Our work is inspired by Winoground, a challenging counterfactual benchmark
-            for visio-linguistic compositional reasoning in images.
-            In Winoground, a model must correctly match two images with their corresponding captions,
-            where both captions use the same set of words, but are rearranged to describe each image.
-
-            Our benchmark's name changes the `W' to a `V' for ``video",
-            and further employs temporal counterfactuals to emphasize this unique element in video data.
+            This generates a dense caption of that can be used to prompt ControlNet to generate a perturbed image with the new answer, while preserving the image's overall composition.
+            <br><br>
+            We manually verify the perturbed image-question pairs to ensure they are valid and the answer is changed. This process can be automated using a strong reasoning model like <em>o3</em>.
+            <br><br>
+            We verify that contaminated models consistently underperform on the perturbed benchmark with varying epochs, training strategies, and model architectures.
           </p>
         </div> 
       </div>
@@ -753,96 +344,79 @@
     <!-- Results. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-six-fifths">
-        <h2 class="title is-3"> Data Curation </h2>
+        <h2 class="title is-3"> Contamination Detection Results </h2>
       </div>
     </div>
     <!-- </div> -->
     <!--/ Results. -->    
   <div class="container is-max-desktop">
   
+    We use  <a href="https://huggingface.co/datasets/nirajandhakal/realworldqa">RealWorldQA</a> and <a href="https://huggingface.co/datasets/Lin-Chen/MMStar">MMStar</a>, which are two popular benchmarks for VLMs that strictly require the visual information in the image to answer the question. We verify that multi-modal semantic perturbation can detect contamination with varying epochs, training strategies, and model architectures.
+    <br><br>
     <div class="columns is-centered">
       <div class="column is-full-width">
-        <centering>
-          <div style="text-align: center;">
-            <img id="teaser" width="70%" src="images/data curation.png">     
+        <!-- First row: RQA results -->
+        <div class="columns is-centered" style="margin-bottom: 2rem;">
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <img id="teaser" style="width: 100%; height: auto; max-width: 100%;" src="images/rqa_llava_tight_detected.png">
+            </div>
           </div>
-        </centering>
-        <div class="content has-text-justified"> 
-          <p>
-            We use GPT-4 to generate counterfactual caption pair candidates,
-            then find the corresponding videos using VATEX's captions as the index
-            with the help of a sentence transformer and the FAISS library.
-            If no such video can be found, we search YouTube with the caption
-            in hopes of finding the corresponding video.  
-          </p>
-        </div>  
-      </div>
-  </section>
-
-  <section class="section">
-    <!-- Results. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-six-fifths">
-        <h2 class="title is-3"> Overview </h2>
-      </div>
-    </div>
-    <!-- </div> -->
-    <!--/ Results. -->    
-  <div class="container is-max-desktop">
-  
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <div class="content has-text-justified"> 
-          <p>
-            We provide an overview of the seven categories Vinoground encompasses in the flashcards below.
-          </p>
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <img id="teaser" style="width: 100%; height: auto; max-width: 100%;" src="images/rqa_qwen_tight_detected.png">
+            </div>
+          </div>
         </div>
-        <centering>
-          <!-- <div style="text-align: center;">
-            <img id="teaser" width="70%" src="images/curation.png">     
-          </div> -->
-          <div class="container mt-5">
-            <!-- <h2 class="text-center mb-5">Who's GPT-4's favorite? Battles between State-of-the-Art Chatbots</h2> -->
-            <!-- Selection -->
-            <div class="form-row" style="justify-content: flex-end;">
-              <div class="form-group col-md-1">
-                <div class="col-md-2" style="width: 100%"><label>&nbsp;</label></div>
-                <div class="btn-group" role="group" aria-label="Left and Right Controller"
-                  style="width: 100%;align-items: flex-end;justify-content: center;flex-direction: row;display: flex;">
-                  <button type="button" class="form-control btn btn-primary" id="prev-question"><i
-                      class="material-icons">keyboard_arrow_left</i></button>
-                  <button type="button" class="form-control btn btn-primary" id="next-question"><i
-                      class="material-icons">keyboard_arrow_right</i></button>
-        
-                </div>
-              </div>
-            </div>
-        
-            <!-- Question Card -->
-            <div style="display: flex; justify-content: center; align-items: center;">
-              <div class="card mb-4" style="width: 100%; display: flex; align-items: center;">
-                <!-- <p><b>Description:</b> Monalisa is a famous painting by Leonardo da Vinci. </p> -->
-        
-                <div class="card-body" id="selected-question" style="display: flex; height: 120vh;">
-                  <div class="chat-history">
-                    <!-- Add your chat messages here -->
-                  </div>
-        
-                </div>
-              </div>
-            </div>
-        
+        <div class="columns is-centered" style="margin-bottom: 3rem;">
+          <div class="column is-full-width">
+            <p style="text-align: center; font-style: italic;"> Detection results of contaminated LLaVA-v1.5-7B and Qwen2-VL-7B on RealWorldQA. _P denotes the semantically perturbed variant. To clarify, the accuracies were measured on the 440 images after manual filtering. Detected? indicates whether the model was detected as contaminated. </p>
           </div>
-        </centering>  
-      </div>
+        </div>
 
-  </section>
+        <!-- Second row: MMStar results -->
+        <div class="columns is-centered" style="margin-bottom: 2rem;">
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <img id="teaser" style="width: 100%; height: auto; max-width: 100%;" src="images/mmstar_llava_tight_detected.png">
+            </div>
+          </div>
+          <div class="column is-half">
+            <div style="text-align: center;">
+              <img id="teaser" style="width: 100%; height: auto; max-width: 100%;" src="images/mmstar_qwen_tight_detected.png">
+            </div>
+          </div>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-full-width">
+            <p style="text-align: center; font-style: italic;"> Detection results of contaminated LLaVA-v1.5-7B and Qwen2-VL-7B on MMStar. _P denotes the semantically perturbed variant. To clarify, the accuracies were measured on the 478 images after manual filtering. Detected? indicates whether the model was detected as contaminated. </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="columns is-centered" style="margin-top: 2rem;">
+      <div class="column is-full-width">
+        <div class="content has-text-justified">
+          <p>From the results, we observe that:</p>
+          <ol>
+            <li>We do not need to manually adjust the detection threshold. Hence, our method is a practical solution to a realistic scenario where we do not know which models have been contaminated.</li>
+            <li>Our method is robust to various realistic contamination strategies (e.g. models contaminated for only 1 epoch!). </li>
+            <li>The performance gap between the original and perturbed variants is positively correlated with the amount of contamination, aligning with our hypothesis that contaminated models fail to generalize under controlled perturbations.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+    <br>
+    For a full comparison to existing detection methods, please refer to our paper.
+  </div>
+</section>
 
   <section class="section">
     <!-- Results. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-six-fifths">
-        <h2 class="title is-3"> Metrics </h2>
+        <h2 class="title is-3"> Why perturbations can generate easier variants </h2>
       </div>
     </div>
     <!-- </div> -->
@@ -853,174 +427,83 @@
       <div class="column is-full-width">
         <centering>
           <div style="text-align: center;">
-            <img id="teaser" width="70%" src="images/metrics.png">     
+            <img id="teaser" width="95%" src="images/generalized.png">     
           </div>
         </centering>
         <div class="content has-text-justified"> 
           <p>
+            Example where the perturbed variant is easier to solve than the original question. In the original image, the traffic sign is small and the text barely legible; after perturbation, the sign is enlarged and clearly visible.
             <br><br>
-            We use text score, video score, and group score as our metrics to evaluate a model's textual, visual and temporal understanding capabilities in a balanced manner. 
+            When Flux ControlNet generates the perturbed image, it often highlights the salient visual cues more clearly than the original images.
           </p>
         </div>  
       </div>
   </section>
 
 
-<section class="section">
-  <!-- Results. -->
-  <div class="columns is-centered has-text-centered">
-    <div class="column is-six-fifths">
-      <h2 class="title is-3"><img id="painting_icon" width="3%" src="https://cdn-icons-png.flaticon.com/512/3515/3515174.png"> Performance</h2>
+  <section class="section">
+    <!-- Results. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-six-fifths">
+        <h2 class="title is-3"> Ablation Studies </h2>
+      </div>
     </div>
-  </div>
-
-
-
-  <!-- </div> -->
-  <!--/ Results. -->    
-<div class="container is-max-desktop">
-
-
-  <!-- Grounedtext2img. -->
-  <div class="columns is-centered">
-    <div class="column is-full-width">
-      <h2 class="title is-4">Overall Results</h2>
-        <div class="columns is-centered">
-          <div class="column is-full-width">
-
-      <div style="text-align: center;">
-        <img id="teaser" width="70%" src="images/overall results.png"> 
-      </div>
-      <div class="content has-text-justified"> 
-        The best model, GPT-4o, even with Chain-of-Thought prompting, can only perform at ~50% accuracy on text and video score, which is significantly undermined by the human baseline of ~90%.
-        All other models perform worse. Most open-source models perform at random chance level.
-        This demonstrates how Vinoground can be easily and accurately completed by an average human and the huge gap between LMMs and human intelligence with respect to temporal reasoning.
-      </div>
-
-      <div style="text-align: center;">
-        <img id="teaser" width="70%" src="images/performance.jpeg"> 
-      </div>
-      <div class="content has-text-justified"> 
-        Here we provide an even more direct comparison on different models' performance using text score vs. video score.
-        The trend of text score being significantly higher than video score can be clearly seen, and all models perform much worse than humans.
-      </div>
-
-    </div>
-  </div>
-
-
-
+    <!-- </div> -->
+    <!--/ Results. -->    
+  <div class="container is-max-desktop">
   
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-5">Real-world Counterfactuals.</h2> 
+        We use <a href="https://huggingface.co/datasets/BaiqiL/NaturalBench">NaturalBench</a>, a dataset consisting of natural adversarial counterfactual examples. We simulate our pipeline by training on one varaint of the counterfactuals and evaluating on the other variant. 
+        <br><br>
+        <div style="text-align: center;">
+          <img id="teaser" width="95%" src="images/natbench.png">     
+        </div>
 
-  <div class="columns is-centered">
-    <div class="column is-full-width">
-      <h2 class="title is-4">Ablation Study: Frames Sampled</h2>
+        We observe that clean models show similar performance on both varaints, while contaminated models show dramatic performance drops upto -45.58% (98.63% -> 53.05%). Note that this is a two-way multiple choice benchmark, meaning that a contaminated model with near perfect performance on the leaked data performs as bad as random guessing on the perturbed variant.
+        <br><br>
+        This result suggests that any reliable semantic variation - natrual, procedural, or synthetic - fits our framework.
+        <br><br>
 
-      
-      <div style="text-align: center;">
-
-        <img id="teaser" width="50%" src="images/frames.png"> 
-      </div>
-
-      <div>
-        <div class="columns is-centered">
-          <div class="column is-full-width">
-            <div class="content has-text-justified"> 
-        <p>
-          It can be seen that using more frames increases LMM performance on our benchmark. This shows that temporality is indeed needed to perform well for Vinoground, and that we are not suffering from "single-frame bias".
-          Too many frames, however, does signficantly harm performance, indicating how modern LMMs lack the ability to ignore useless visual signals from the inputs.
-          <br>
-          On the other hand, humans perform better when the entire video with audio is given when compared to most model's 32-frame sampling method. This indicates that finding ways for models to process more frames at once is an important research direction for temporal reasoning.
-        </p>
+        <h2 class="title is-5">Our pipeline is modular.</h2> For our main experiments, we use GPT-4o as the LLM and Flux ControlNet as the text-to-image model. However, we verify that our approach works even after replacing GPT-4o with Molmo-7B-D, and after replacing manual filtering with verification by a strong reasoning model like <em>o3</em>.
+        <br><br>
+        <h2 class="title is-5">Our pipeline generalizes to pretraining and larger models.</h2> We verify that our approach can detect contamination that occurs during the pretraining stage, when LLaVA-v1.5-7B is trained from scratch. We also verify that our approach extends to larger models like LLaVA-v1.5-13B.
+        <br><br>
       </div>
     </div>
-
-
   </div>
-
-  <div class="columns is-centered">
-    <div class="column is-full-width">
-      <h2 class="title is-4">Ablation Study: Performance by Category</h2>
-
-      
-      <div style="text-align: center;">
-
-        <img id="teaser" width="70%" src="images/category_bar_group.png"> 
-      </div>
-
-      <div>
-        <div class="columns is-centered">
-          <div class="column is-full-width">
-            <div class="content has-text-justified"> 
-        <p>
-          Interestingly, many models perform significantly better on the "viewpoint" and "contextual" categories that involve drastic frame changes, while being significantly worse on other categories.
-          This shows how models are much better at analyzing coarse-level information rather than fine-grained details.
-        </p>
-      </div>
-    </div>
-
-
-  </div>
-
-  
 </section>
-
-
-</section>
-
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>
-        @article{zhang2024vinoground,
-          title={Vinoground: Scrutinizing LMMs over Dense Temporal Reasoning with Short Videos},
-          author={Zhang, Jianrui and Mu, Cai and Lee, Yong Jae}
-          journal={arXiv},
-          year={2024},
-          eprint={2410.02763},
+        @misc{park2025contaminationdetectionvlmsusing,
+          title={Contamination Detection for VLMs using Multi-Modal Semantic Perturbation}, 
+          author={Jaden Park and Mu Cai and Feng Yao and Jingbo Shang and Soochahn Lee and Yong Jae Lee},
+          year={2025},
+          eprint={2511.03774},
           archivePrefix={arXiv},
-          primaryClass={cs.CV},
-          url={https://arxiv.org/abs/2410.02763}, 
+          primaryClass={cs.LG},
+          url={https://arxiv.org/abs/2511.03774}, 
         }
   </code></pre>
     </div>
   </section>
-  
   <section class="section" id="Acknowledgement">
     <div class="container is-max-desktop content">
       <h2 class="title">Acknowledgement</h2>
       <p>
         This website is adapted from <a
-        href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-        Commons Attribution-ShareAlike 4.0 International License</a>.  We thank the LLaMA team for giving us access to their models, and open-source projects, including Alpaca and Vicuna.
+        href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
       </p>
-
-      <p>
-<b>Usage and License Notices</b>: The data, code and checkpoint is intended and licensed for research use only. They are also restricted to uses that follow the license agreement of CLIP, LLaMA, and GPT-4. The dataset is CC BY NC 4.0 (allowing only non-commercial use) and models trained using the dataset should not be used outside of research purposes.
-</p>
-
-      <!-- <p>
-      Related Links: 
-      <a href='https://instruction-tuning-with-gpt-4.github.io/'>[Instruction Tuning with GPT-4]</a>      
-      </p>     -->
     </div>
   </section>
-
-
   <script>
     // Handle message showing
     function createChatRow(sender, text, imageSrc) {
       var article = document.createElement("article");
       article.className = "media"
-
-      // var figure = document.createElement("figure");
-      // figure.className = "media-left";
-
-      // var span = document.createElement("span");
-      // span.className = "icon is-large";
-
-      // var icon = document.createElement("i");
-      // icon.className = "fas fas fa-2x" + (sender === "User" ? " fa-user " : sender === "LLaVA" ? " fa-robot" : "");
 
       var media = document.createElement("div");
       media.className = "media-content";
@@ -1064,11 +547,6 @@
 
       content.appendChild(para);
       media.appendChild(content);
-      // span.appendChild(icon);
-      // figure.appendChild(span);
-      // if (sender !== "Description") {
-      //   article.appendChild(figure);
-      // };
       article.appendChild(media);
       return article;
     }
