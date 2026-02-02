@@ -183,8 +183,8 @@
           <div class="column has-text-centered">
             <h3 class="title is-3 publication-title">Contamination Detection for VLMs using Multi‑Modal Semantic Perturbations
             </h3>
-            <h5 class="subtitle is-4 publication-awards">arXiv 2025</h5>
-            <div class="is-size-4 publication-authors">
+            <h5 class="subtitle is-4 publication-awards">ICLR 2026</h5>
+            <div class="is-size-4 publication-authors"> 
 
               <span class="author-block">
                 <a href="https://jadenpark0.github.io/">Jaden Park<sup class="sup-1">1</sup></a>,
@@ -230,8 +230,8 @@
                     <span>arXiv</span>
                   </a>
                 </span>
-                <!-- <span class="link-block">
-                  <a href="https://github.com/Vinoground/Vinoground" target="_blank"
+                <span class="link-block">
+                  <a href="https://github.com/jadenpark0/mm-perturb" target="_blank"
                     class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="fab fa-github"></i>
@@ -239,24 +239,6 @@
                     <span>Code</span>
                   </a>
                 </span>
-                <span class="link-block">
-                  <a href="https://huggingface.co/datasets/HanSolo9682/Vinoground" target="_blank"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-database"></i>
-                    </span>
-                    <span>Dataset</span>
-                  </a>
-                </span>
-                <span class="link-block">
-                  <a href="#leaderboard"
-                    class="external-link button is-normal is-rounded is-dark">
-                    <span class="icon">
-                      <i class="fas fa-chart-bar"></i>
-                    </span>
-                    <span>Leaderboard</span>
-                  </a>
-                </span> -->
               </div>
             </div>
           </div>
@@ -464,10 +446,14 @@
         <br><br>
         This result suggests that any reliable semantic variation - natural, procedural, or synthetic - fits our framework.
         <br><br>
+        <h2 class="title is-5">Our pipeline detects contamination with paraphrased data.</h2> A simple but effective contamiation strategy is paraphrasing the training data. We verify that our approach can detect models that have been contaminated with paraphrased data.
+        <br><br>
 
         <h2 class="title is-5">Our pipeline is modular.</h2> For our main experiments, we use GPT-4o as the LLM and Flux ControlNet as the text-to-image model. However, we verify that our approach works even after replacing GPT-4o with Molmo-7B-D, and after replacing manual filtering with verification by a strong reasoning model like <em>o3</em>.
         <br><br>
         <h2 class="title is-5">Our pipeline generalizes to pretraining and larger models.</h2> We verify that our approach can detect contamination that occurs during the pretraining stage, when LLaVA-v1.5-7B is trained from scratch. We also verify that our approach extends to larger models like LLaVA-v1.5-13B.
+        <br><br>
+        <h2 class="title is-5">Our pipeline generalizes beyond multi-choice VQA settings.</h2> Our framework is not inherently tied to the multiple-choice VQA setting. Once visual evidence is perturbed, the evaluation can be adapted to other tasks using string matching, likelihood-based scoring, or LLM-as-a-judge approaches. We show that our approach can be extended to free-form QA in the appendix.
         <br><br>
       </div>
     </div>
@@ -478,14 +464,11 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>
-        @misc{park2025contaminationdetectionvlmsusing,
+        @article{park2025vlmcont,
           title={Contamination Detection for VLMs using Multi-Modal Semantic Perturbation}, 
           author={Jaden Park and Mu Cai and Feng Yao and Jingbo Shang and Soochahn Lee and Yong Jae Lee},
-          year={2025},
-          eprint={2511.03774},
-          archivePrefix={arXiv},
-          primaryClass={cs.LG},
-          url={https://arxiv.org/abs/2511.03774}, 
+          journal={International Conference on Learning Representations},
+          year={2026},  
         }
   </code></pre>
     </div>
